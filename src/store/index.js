@@ -35,7 +35,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // 
+    // Llama a los pacientes por medio de la API y limpia el formulario
     setPatients({commit}) {
       axios.get(`${baseUrl}/patients`)
       .then((response) => {
@@ -43,19 +43,20 @@ export default new Vuex.Store({
         commit('SET_PATIENTS', response.data)
       })
     },
+    // Agrega nuevo paciente por medio de la API y si sale bien, lo muestra debajo del paciente actual
     postPatient({dispatch, state}) {
       axios.post(`${baseUrl}/patient`, state.currentPatient.data)
       .then(() => {
         dispatch('setPatients')
       })
     },
+    // Permite llenar los datos de los inputs haciendo conexión con la API y así permitir agregar pacientes
     updateName({commit}, name) {
       commit('UPDATE_NAME', name)
     },
     updateEmail({commit}, email) {
       commit('UPDATE_EMAIL', email)
     },
-
   },
   modules: {
   }
