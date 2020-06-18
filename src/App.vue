@@ -2,28 +2,12 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="pink darken-4"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-toolbar-title>Hospital UCCH</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -38,8 +22,19 @@
     </v-app-bar>
 
     <v-content>
-      <FormPatient/>
-      <ListPatient/>
+      <div>
+        <v-container>
+          <v-row>
+            <v-col cols="12" sm="10" md="8"  class="mx-auto">
+              <v-overlay :value="loading">
+                <v-progress-circular indeterminate size="64"></v-progress-circular>
+              </v-overlay>
+              <FormPatient/>
+              <ListPatient/>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
     </v-content>
   </v-app>
 </template>
@@ -48,6 +43,8 @@
 import FormPatient from './components/FormPatient';
 import ListPatient from './components/ListPatient';
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'App',
 
@@ -55,9 +52,8 @@ export default {
     FormPatient,
     ListPatient
   },
-
-  data: () => ({
-    //
-  }),
+  computed: {
+    ...mapState(['loading'])
+  }
 };
 </script>

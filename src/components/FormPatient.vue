@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center mt-5">
     <v-card class="pa-5 red lighten-5">
       <h1 class="text-center mb-5">Ingreso de Pacientes</h1>
         <v-text-field label="Nombre" type="text" :value="currentPatient.data.name" @input="updateName" outlined color="pink darken-1"/>
@@ -17,7 +17,7 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   methods: {
-    ...mapActions(['updateName', 'updateEmail', 'postPatient']),
+    ...mapActions(['updateName', 'updateEmail', 'postPatient', 'updatePatient']),
     submitForm() {
       if (this.currentPatient.id) {
         //Si tiene id se llama a la funcion que actualiza los datos
